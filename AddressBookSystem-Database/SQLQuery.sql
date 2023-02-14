@@ -23,3 +23,6 @@ values('rinku', 'berde', '54 backstreet', 'NY', 'America', 123654, 09876557843, 
 
 --display table
 select * from AddressBookDetails
+
+----UC4 ability to edit existing contact using their name---
+update AddressBookDetails set phoneNumber=9432667788 where firstName='harsha'
