@@ -32,3 +32,7 @@ delete from AddressBookDetails where firstName='terisa'
 
 --UC6 -- ability to retrieve person using city or state from the table
 select * from AddressBookDetails where city = 'Mysore' or state = 'karnataka'
+
+------ UC 7: Ability to Retrieve Count of address book by city and state---
+select Count(city) from AddressBookDetails
+select count(state) from AddressBookDetails
