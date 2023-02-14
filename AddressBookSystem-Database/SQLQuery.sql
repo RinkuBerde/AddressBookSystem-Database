@@ -41,3 +41,24 @@ select count(state) from AddressBookDetails
 select * from AddressBookDetails 
 WHERE city = 'Chennai'
 ORDER BY firstName
+
+------ UC 9: Identify each Address Book with name andType ------
+alter table AddressBookDetails 
+add Book_Name VARCHAR(20),
+Contact_Type VARCHAR(20)
+
+--Update values for Type=Friends--
+update AddressBookDetails
+set Book_Name='FriendName',Contact_Type='Friends'
+where FirstName='harsha' 
+
+--Update values for Type=Family--
+update AddressBookDetails
+set Book_Name='FamilyName',Contact_Type='Family'
+where FirstName='rinku'
+
+--Update values for Type=Profession--
+update AddressBookDetails
+set Book_Name='Manager',Contact_Type='Profession'
+where FirstName='gitesh'
+select * from AddressBookDetails
