@@ -36,3 +36,8 @@ select * from AddressBookDetails where city = 'Mysore' or state = 'karnataka'
 ------ UC 7: Ability to Retrieve Count of address book by city and state---
 select Count(city) from AddressBookDetails
 select count(state) from AddressBookDetails
+
+--UC8 Sort Contacts By Name in a City
+select * from AddressBookDetails 
+WHERE city = 'Chennai'
+ORDER BY firstName
