@@ -132,3 +132,33 @@ from Address_Book
 Full JOIN Contact_Person on Address_Book.Address_BookID=AddressBook_ID 
 Full JOIN TypeManager on TypeManager.Contact_Identity=Contact_ID
 Full JOIN ContactType on TypeManager.ContactType_Identity=ContactType_ID
+
+------  UseCase 12-:Ensure all retrieve queries done especially in UC 6, UC 7, UC 8 and UC 10-----
+   ----UC-6: Ability to Retrieve Person belonging to a City or State --
+select Address_BookName,Concat(FirstName,' ',SecondName) as Name,Concat(Address,' ,',City,' ,',State,' ,',zip) as Address,PhoneNumber,Email,ContactType_Name
+from Contact_Person 
+INNER JOIN  Address_Book on Address_Book.Address_BookID=AddressBook_ID and (City='Bangalore' or State='Karnataka')
+INNER JOIN TypeManager on TypeManager.Contact_Identity=Contact_ID
+INNER JOIN ContactType on TypeManager.ContactType_Identity=ContactType_ID
+
+  ------ UC-7: Ability to Retrieve Count of Person belonging to a City and State ------
+select Count(*),state,City
+from Contact_Person 
+INNER JOIN  Address_Book on Address_Book.Address_BookID=AddressBook_ID 
+Group by state,City
+
+   ------ UC-7: Ability to retrieve entries sorted alphabetically ------
+select Address_BookName,(FirstName+' '+SecondName) as Name,Concat(Address,' ,',City,' ,',State,' ,',zip) as Address,PhoneNumber,Email,ContactType_Name
+from Contact_Person 
+INNER JOIN  Address_Book on Address_Book.Address_BookID=AddressBook_ID and (City='Bangalore')
+INNER JOIN TypeManager on TypeManager.Contact_Identity=Contact_ID
+INNER JOIN ContactType on TypeManager.ContactType_Identity=ContactType_ID
+order by(FirstName)
+
+   ------ UC-10: Ability to get number of contact persons by Type------
+select Count(*) as NumberOfContacts,ContactType.ContactType_Name
+from Contact_Person 
+INNER JOIN  Address_Book on Address_Book.Address_BookID=AddressBook_ID
+INNER JOIN TypeManager on TypeManager.Contact_Identity=Contact_ID
+INNER JOIN ContactType on TypeManager.ContactType_Identity=ContactType_ID
+Group by ContactType_Name
